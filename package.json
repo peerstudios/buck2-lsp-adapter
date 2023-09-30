@@ -11,7 +11,17 @@
     "vscode": "^1.82.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages",
+    "Debuggers"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Bazel",
+    "Buck",
+    "Buck2",
+    "starlark",
+    "skylark",
+    "debuggers"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
