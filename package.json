@@ -1,0 +1,141 @@
+{
+  "name": "buck2-lsp-adapter",
+  "description": "A buck2 lsp adapter for VSCode",
+  "version": "1.0.0",
+  "publisher": "PeerStudios",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PeerStudios/buck2-lsp-adapter"
+  },
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "starlark",
+        "aliases": [
+          "Starlark",
+          "skylark",
+          "Skylark"
+        ],
+        "extensions": [
+          ".star",
+          ".sky",
+          ".bxl",
+          ".bzl",
+          ".bazel"
+        ],
+        "filenames": [
+          "BUILD",
+          "WORKSPACE",
+          "BUCK",
+          "BUCK.v2",
+          "BUILD_DEFS",
+          "DEFS",
+          "TARGETS",
+          "TARGETS.v2",
+          "PACKAGE"
+        ],
+        "configuration": "./syntax/starlark.configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "starlark",
+        "scopeName": "source.starlark",
+        "path": "./syntax/starlark.tmLanguage.json"
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "starlark"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "starlark",
+        "label": "Starlark Debug",
+        "program": "/usr/bin/env",
+        "args": [
+          "buck2",
+          "starlark",
+          "debug-attach"
+        ],
+        "languages": [
+          "starlark"
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "The program to debug.",
+                "default": "${file}"
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "starlark",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${file}"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "buck2-lsp-adapter.buck2Path": {
+          "type": "string",
+          "default": "buck2",
+          "description": "Path to the buck2 binary, should either be `buck2` or absolute."
+        },
+        "buck2-lsp-adapter.lspArguments": {
+          "type": "string",
+          "default": "-v 4",
+          "description": "Arguments to pass to the buck2 lsp server"
+        },
+        "buck2-lsp-adapter.enableGotoDefinition": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable goto definition"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "buck2-lsp-adapter.restart",
+        "title": "Start / Restart the buck2 lsp server"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm build",
+    "build": "tsup --minify terser",
+    "dev": "tsup --watch",
+    "package": "vsce package --no-dependencies --pre-release",
+    "vscode:publish": "vsce publish --no-dependencies --pre-release"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.82.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/vsce": "^2.21.1",
+    "eslint": "^8.50.0",
+    "terser": "^5.20.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  }
+}
