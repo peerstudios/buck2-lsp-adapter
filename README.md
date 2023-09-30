@@ -38,7 +38,7 @@ To get started with this extension, you need to have Buck2 installed on your sys
 
 To build the extension from source, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/buck2-lsp-adapter.git`
+1. Clone the repository: `git clone https://github.com/PeerStudios/buck2-lsp-adapter.git`
 2. Navigate to the project directory: `cd buck2-lsp-adapter`
 3. Install the dependencies: `pnpm install`
 4. Build the extension: `pnpm package`
