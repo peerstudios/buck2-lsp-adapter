@@ -1,7 +1,7 @@
 {
   "name": "buck2-lsp-adapter",
   "description": "A buck2 lsp adapter for VSCode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "PeerStudios",
   "repository": {
     "type": "git",
